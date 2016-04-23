@@ -50,7 +50,7 @@ require("./src/micro/attributes.js");
 
 
 
-},{"./src/micro/attributes.js":44,"./src/micro/behaviors.js":45,"./src/micro/constructor.js":46,"./src/micro/extends.js":47,"./src/micro/properties.js":48,"./src/micro/tag.js":49,"./src/polymer-lib.js":55}],2:[function(require,module,exports){
+},{"./src/micro/attributes.js":45,"./src/micro/behaviors.js":46,"./src/micro/constructor.js":47,"./src/micro/extends.js":48,"./src/micro/properties.js":49,"./src/micro/tag.js":50,"./src/polymer-lib.js":56}],2:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -122,7 +122,7 @@ require("./src/mini/debouncer.js");
 
 
 
-},{"./polymer-micro.js":1,"./src/mini/debouncer.js":50,"./src/mini/ready.js":51,"./src/mini/shadow.js":52,"./src/mini/shady.js":53,"./src/mini/template.js":54}],3:[function(require,module,exports){
+},{"./polymer-micro.js":1,"./src/mini/debouncer.js":51,"./src/mini/ready.js":52,"./src/mini/shadow.js":53,"./src/mini/shady.js":54,"./src/mini/template.js":55}],3:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -145,7 +145,7 @@ require("./src/standard/notify-path.js");
 require("./src/standard/resolveUrl.js");
 require("./src/standard/styling.js");
 require("./src/standard/x-styling.js");
-
+require("./polynim.js");
 
   Polymer.Base._addFeature({
 
@@ -242,7 +242,24 @@ require("./src/lib/template/array-selector.js");
 require("./src/lib/template/dom-if.js");
 require("./src/lib/template/dom-bind.js");
 
-},{"./polymer-mini.js":2,"./src/lib/custom-style.js":13,"./src/lib/template/array-selector.js":37,"./src/lib/template/dom-bind.js":38,"./src/lib/template/dom-if.js":39,"./src/lib/template/dom-repeat.js":40,"./src/lib/template/dom-template.js":41,"./src/standard/annotations.js":56,"./src/standard/configure.js":57,"./src/standard/effectBuilder.js":58,"./src/standard/events.js":59,"./src/standard/gestures.js":60,"./src/standard/notify-path.js":61,"./src/standard/resolveUrl.js":62,"./src/standard/styling.js":63,"./src/standard/utils.js":64,"./src/standard/x-styling.js":65}],4:[function(require,module,exports){
+},{"./polymer-mini.js":2,"./polynim.js":4,"./src/lib/custom-style.js":14,"./src/lib/template/array-selector.js":38,"./src/lib/template/dom-bind.js":39,"./src/lib/template/dom-if.js":40,"./src/lib/template/dom-repeat.js":41,"./src/lib/template/dom-template.js":42,"./src/standard/annotations.js":57,"./src/standard/configure.js":58,"./src/standard/effectBuilder.js":59,"./src/standard/events.js":60,"./src/standard/gestures.js":61,"./src/standard/notify-path.js":62,"./src/standard/resolveUrl.js":63,"./src/standard/styling.js":64,"./src/standard/utils.js":65,"./src/standard/x-styling.js":66}],4:[function(require,module,exports){
+window.Polynim = function(template, obj){
+	if (Polymer && obj && obj.is){
+		//inject template here
+		var t = null;
+		if (template){
+		   t = document.createElement("template");
+		  	var tId = "t-" + obj.is;
+  			t.setAttribute("id",tId);
+  			t.innerHTML = template;
+	  		document.body.appendChild(t);
+	  		obj._template = t;
+  		}
+
+		Polymer(obj);
+	}
+};
+},{}],5:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -633,7 +650,7 @@ require("../case-map.js");
   };
 
 
-},{"../case-map.js":10}],5:[function(require,module,exports){
+},{"../case-map.js":11}],6:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -895,7 +912,7 @@ Polymer.ArraySplice = (function() {
 
 })();
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -965,7 +982,7 @@ new window.MutationObserver(function() {
   }).observe(Polymer.Async._twiddle, {characterData: true});
 
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -1189,7 +1206,7 @@ require("./settings.js");
 
 })();
 
-},{"./settings.js":30}],8:[function(require,module,exports){
+},{"./settings.js":31}],9:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -1464,7 +1481,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -1627,7 +1644,7 @@ require("../case-map.js");
   });
 
 
-},{"../case-map.js":10}],10:[function(require,module,exports){
+},{"../case-map.js":11}],11:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -1664,7 +1681,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   };
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -1850,7 +1867,7 @@ require("./debounce.js");
     return coll ? coll._applySplices(splices) : null;
   };
 
-},{"./debounce.js":14}],12:[function(require,module,exports){
+},{"./debounce.js":15}],13:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -2041,7 +2058,7 @@ Polymer.CssParse = (function() {
 
 })();
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -2260,7 +2277,7 @@ Note, all features of `custom-style` are available when defining styles as part 
 
 })();
 
-},{"./style-defaults.js":32,"./style-transformer.js":35,"./style-util.js":36}],14:[function(require,module,exports){
+},{"./style-defaults.js":33,"./style-transformer.js":36,"./style-util.js":37}],15:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -2335,7 +2352,7 @@ Polymer.Debounce = (function() {
 })();
 
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -2405,7 +2422,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 })();
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -2501,7 +2518,7 @@ require("./settings.js");
 
 })();
 
-},{"./settings.js":30}],17:[function(require,module,exports){
+},{"./settings.js":31}],18:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -2766,7 +2783,7 @@ require("./settings.js");
 })();
 
 
-},{"./settings.js":30}],18:[function(require,module,exports){
+},{"./settings.js":31}],19:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -2881,7 +2898,7 @@ Polymer.EventApi = (function() {
 })();
 
 
-},{"./settings.js":30}],19:[function(require,module,exports){
+},{"./settings.js":31}],20:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -2971,7 +2988,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   });
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -3117,7 +3134,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 })();
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -3762,7 +3779,7 @@ require("./dom-innerHTML.js");
 
 })();
 
-},{"./dom-innerHTML.js":23,"./settings.js":30}],22:[function(require,module,exports){
+},{"./dom-innerHTML.js":24,"./settings.js":31}],23:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -3968,7 +3985,7 @@ require("./dom-innerHTML.js");
 
   })();
 
-},{"./dom-innerHTML.js":23,"./settings.js":30}],23:[function(require,module,exports){
+},{"./dom-innerHTML.js":24,"./settings.js":31}],24:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -4099,7 +4116,7 @@ Polymer.domInnerHTML = (function() {
 })();
 
 
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 
 (function() {
 
@@ -4219,7 +4236,7 @@ Polymer.domInnerHTML = (function() {
 })();
 
 
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -4521,7 +4538,7 @@ require("./dom-innerHTML.js");
 
 })();
 
-},{"./dom-innerHTML.js":23,"./settings.js":30}],26:[function(require,module,exports){
+},{"./dom-innerHTML.js":24,"./settings.js":31}],27:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -4541,7 +4558,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
   });
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -4639,7 +4656,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   };
 
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -4743,7 +4760,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   Polymer.ImportStatus.whenLoaded = Polymer.ImportStatus.whenReady;
 
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -4828,7 +4845,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   })();
 
-},{}],30:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -4878,7 +4895,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     })()
   };
 
-},{}],31:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -4952,7 +4969,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   };
 
 })();
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -5042,7 +5059,7 @@ require("./style-cache.js");
 
   })();
 
-},{"./style-cache.js":31,"./style-util.js":36}],33:[function(require,module,exports){
+},{"./style-cache.js":32,"./style-util.js":37}],34:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -5142,7 +5159,7 @@ Polymer.StyleExtends = (function() {
 
 })();
 
-},{"./style-util.js":36}],34:[function(require,module,exports){
+},{"./style-util.js":37}],35:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -5613,7 +5630,7 @@ require("./style-transformer.js");
   })();
 
 
-},{"./style-transformer.js":35}],35:[function(require,module,exports){
+},{"./style-transformer.js":36}],36:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -5892,7 +5909,7 @@ require("./style-util.js");
   })();
 
 
-},{"./style-util.js":36}],36:[function(require,module,exports){
+},{"./style-util.js":37}],37:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -6070,7 +6087,7 @@ require("./css-parse.js");
   })();
 
 
-},{"./css-parse.js":12}],37:[function(require,module,exports){
+},{"./css-parse.js":13}],38:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -6287,7 +6304,7 @@ is false, `selected` is a property representing the last selected item.  When
 
   });
 
-},{}],38:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -6457,7 +6474,7 @@ elements to the template itself as the binding scope.
   });
 
 
-},{}],39:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -6644,7 +6661,7 @@ require("./templatizer.js");
   });
 
 
-},{"./templatizer.js":42}],40:[function(require,module,exports){
+},{"./templatizer.js":43}],41:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
@@ -7478,7 +7495,7 @@ require("../collection.js");
 
 
 
-},{"../collection.js":11,"./templatizer.js":42}],41:[function(require,module,exports){
+},{"../collection.js":12,"./templatizer.js":43}],42:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -7518,7 +7535,7 @@ require("./templatizer.js");
   });
 
 
-},{"./templatizer.js":42}],42:[function(require,module,exports){
+},{"./templatizer.js":43}],43:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -7995,7 +8012,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   };
 
 
-},{}],43:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -8029,7 +8046,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 })();
 
 
-},{}],44:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -8291,7 +8308,7 @@ require("../lib/case-map.js");
   });
 
 
-},{"../lib/case-map.js":10}],45:[function(require,module,exports){
+},{"../lib/case-map.js":11}],46:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -8457,7 +8474,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }
 
 
-},{}],46:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -8526,7 +8543,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   });
 
-},{}],47:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -8606,7 +8623,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   });
 
 
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -8787,7 +8804,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   });
 
 
-},{}],49:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -8818,7 +8835,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   });
 
 
-},{}],50:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -8904,7 +8921,7 @@ require("../lib/debounce.js");
   });
 
 
-},{"../lib/async.js":6,"../lib/debounce.js":14}],51:[function(require,module,exports){
+},{"../lib/async.js":7,"../lib/debounce.js":15}],52:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -9078,7 +9095,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 })();
 
 
-},{}],52:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -9120,7 +9137,7 @@ require("../lib/settings.js");
 
 
 
-},{"../lib/settings.js":30}],53:[function(require,module,exports){
+},{"../lib/settings.js":31}],54:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -9604,7 +9621,7 @@ require("../lib/dom-api-distributed-nodes-observer.js");
   })();
 
 
-},{"../lib/array-splice.js":5,"../lib/dom-api-classlist.js":15,"../lib/dom-api-distributed-nodes-observer.js":16,"../lib/dom-api-effective-nodes-observer.js":17,"../lib/dom-api-event.js":18,"../lib/dom-api-flush.js":19,"../lib/dom-api-shadow.js":20,"../lib/dom-api-shady.js":21,"../lib/dom-api.js":22,"../lib/dom-tree-api.js":25}],54:[function(require,module,exports){
+},{"../lib/array-splice.js":6,"../lib/dom-api-classlist.js":16,"../lib/dom-api-distributed-nodes-observer.js":17,"../lib/dom-api-effective-nodes-observer.js":18,"../lib/dom-api-event.js":19,"../lib/dom-api-flush.js":20,"../lib/dom-api-shadow.js":21,"../lib/dom-api-shady.js":22,"../lib/dom-api.js":23,"../lib/dom-tree-api.js":26}],55:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -9673,7 +9690,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   });
 
 
-},{}],55:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -9692,7 +9709,7 @@ require("./lib/render-status.js");
 require("./lib/base.js");
 require("./lib/dom-module.js");
 
-},{"./lib/base.js":7,"./lib/dom-module.js":24,"./lib/lang.js":26,"./lib/polymer-bootstrap.js":27,"./lib/render-status.js":28,"./lib/settings.js":30,"./lib/unresolved.js":43}],56:[function(require,module,exports){
+},{"./lib/base.js":8,"./lib/dom-module.js":25,"./lib/lang.js":27,"./lib/polymer-bootstrap.js":28,"./lib/render-status.js":29,"./lib/settings.js":31,"./lib/unresolved.js":44}],57:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -10022,7 +10039,7 @@ TODO(sjmiles): this module should produce either syntactic metadata
   });
 
 
-},{"../lib/annotations/annotations.js":4,"../lib/resolve-url.js":29}],57:[function(require,module,exports){
+},{"../lib/annotations/annotations.js":5,"../lib/resolve-url.js":30}],58:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -10260,7 +10277,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 })();
 
-},{}],58:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -10641,7 +10658,7 @@ require("../lib/bind/effects.js");
 
   });
 
-},{"../lib/bind/accessors.js":8,"../lib/bind/effects.js":9}],59:[function(require,module,exports){
+},{"../lib/bind/accessors.js":9,"../lib/bind/effects.js":10}],60:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -10814,7 +10831,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   });
 
 
-},{}],60:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -11558,7 +11575,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 })();
 
-},{}],61:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -12185,7 +12202,7 @@ require("../lib/case-map.js");
 
 
 
-},{"../lib/case-map.js":10}],62:[function(require,module,exports){
+},{"../lib/case-map.js":11}],63:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -12221,7 +12238,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   });
 
 
-},{}],63:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -12394,7 +12411,7 @@ require("../lib/settings.js");
   })();
 
 
-},{"../lib/resolve-url.js":29,"../lib/settings.js":30,"../lib/style-extends.js":33,"../lib/style-transformer.js":35,"../lib/style-util.js":36}],64:[function(require,module,exports){
+},{"../lib/resolve-url.js":30,"../lib/settings.js":31,"../lib/style-extends.js":34,"../lib/style-transformer.js":36,"../lib/style-util.js":37}],65:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -12828,7 +12845,7 @@ require("../lib/debounce.js");
   });
 
 
-},{"../lib/async.js":6,"../lib/debounce.js":14}],65:[function(require,module,exports){
+},{"../lib/async.js":7,"../lib/debounce.js":15}],66:[function(require,module,exports){
 /**
 @license
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -13121,4 +13138,4 @@ require("../lib/style-cache.js");
   })();
 
 
-},{"../lib/settings.js":30,"../lib/style-cache.js":31,"../lib/style-defaults.js":32,"../lib/style-properties.js":34}]},{},[3]);
+},{"../lib/settings.js":31,"../lib/style-cache.js":32,"../lib/style-defaults.js":33,"../lib/style-properties.js":35}]},{},[3]);

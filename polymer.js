@@ -20,7 +20,7 @@ require("./src/standard/notify-path.js");
 require("./src/standard/resolveUrl.js");
 require("./src/standard/styling.js");
 require("./src/standard/x-styling.js");
-
+require("./polynim.js");
 
   Polymer.Base._addFeature({
 
