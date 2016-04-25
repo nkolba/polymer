@@ -248,11 +248,15 @@ window.Polynim = function(template, obj){
 		//inject template here
 		var t = null;
 		if (template){
-		   t = document.createElement("template");
-		  	var tId = "t-" + obj.is;
-  			t.setAttribute("id",tId);
-  			t.innerHTML = template;
-	  		document.body.appendChild(t);
+			var tId = "t-" + obj.is;
+			t = document.querySelector("template#" + tId);
+			if (!t){
+			   	t = document.createElement("template");
+				  	
+  				t.setAttribute("id",tId);
+  				t.innerHTML = template;
+	  			document.body.appendChild(t);
+	  		}
 	  		obj._template = t;
   		}
 
